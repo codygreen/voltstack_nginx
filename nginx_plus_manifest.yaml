@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginxplus-service
+  labels:
+    app: nginxplus
+  annotations:
+    ves.io/proxy-type: HTTP_PROXY
+    ves.io/http2-enable: "true"
+spec:
+  type: ClusterIP
+  selector:
+    app: nginxplus
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxplus-deployment
+  labels:
+    app: nginxplus
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxplus
+  template:
+    metadata:
+      labels:
+        app: nginxplus
+    spec:
+      containers:
+      - name: nginxplus
+        image: codygreen/nginxplus
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
