@@ -28,5 +28,11 @@ Volterra uses VoltStack to create a virtual K8S cluster across all specified vir
 **Note**: You will need to change the `.spec.template.spec.containers.image` to point to your private DockerHub registry and application.
 
 ```bash
-kubectl apply -f nginx_plus_manifest.yaml
+kubectl apply -f customer_edge/nginx_plus_manifest.yaml
+```
+
+If you are deploying in the Regional Edge there are some [restrictions](https://www.volterra.io/docs/how-to/app-management/create-vk8s-obj?query=restrictions) that require us to deploy NGINX in an unprivileged mode:
+
+```bash
+kubectl apply -f regional_edge/nginx_plus_manifest.yaml
 ```

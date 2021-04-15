@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginxplus
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: nginxplus
+  type: ClusterIP
+  sessionAffinity: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxplus-deployment
+  labels:
+    app: nginxplus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxplus
+  template:
+    metadata:
+      labels:
+        app: nginxplus
+    spec:
+      containers:
+      - name: nginxplus
+        image: codygreen/nginxplus:unpriv
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
