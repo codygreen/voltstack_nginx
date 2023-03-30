@@ -1,6 +1,6 @@
 # Deploy NGINX Plus in a Volterra VoltStack
 
-This demo will deploy NGINX Plus in a Volterra VoltStack via K8S manifest
+This demo will deploy NGINX Plus or NGINX OSS in a Volterra VoltStack via K8S manifest
 
 ## Download and Set KUBECONFIG variable
 
@@ -35,4 +35,10 @@ If you are deploying in the Regional Edge there are some [restrictions](https://
 
 ```bash
 kubectl apply -f regional_edge/nginx_plus_manifest.yaml
+```
+
+## Build NGINX OSS Container
+
+```bash
+podman build -t nginx-demo .
 ```
