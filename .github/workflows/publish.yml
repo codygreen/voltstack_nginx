@@ -5,6 +5,7 @@ on:
     branches: ['main']
     paths:
         - 'nginx_oss/**'
+        - '.github/workflows/publish.yml'
 
 env:
   REGISTRY: ghcr.io
