@@ -1,4 +1,2 @@
-FROM nginx
-RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+FROM ghcr.io/nginxinc/nginx-unprivileged:1.22-perl
 COPY content /usr/share/nginx/html
-COPY conf /etc/nginx
